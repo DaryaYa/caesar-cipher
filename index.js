@@ -2,8 +2,9 @@
 const { createReadStream, createWriteStream } = require("fs");
 const { pipeline, Transform } = require("stream");
 // const path = require('path');
-const cipherFunc = require('./cipher');
+ const cipherFunc = require('./cipher');
 const args = require('./args');
+const { TransformStream } = require("./transform");
 
 const options = args();
 
@@ -15,13 +16,14 @@ if (options.hasOwnProperty("input")) {
 
 let writable = process.stdout;
 if (options.hasOwnProperty("output")) {
-  writable = createWriteStream("out.txt")
+  writable = createWriteStream(options.output, { flags: "a" });
 }
 
-const TransformStream = new Transform();
+ const transformStream = new TransformStream(options.action, options.shift);
+
 
 TransformStream._transform = (chunk, encoding, callback) => {
-  const str = chunk.toString();
+  const str = chunk.toString("utf8");
  // console.log(str);
   const cT = cipherFunc(str);
   console.log(cT);
@@ -35,7 +37,7 @@ pipeline(
   readable,
  //process.stdin,
 // createReadStream('in.txt', 'utf8'),
- TransformStream,
+ transformStream,
  writable,
  // createWriteStream("out.txt"),
   (error) => {
