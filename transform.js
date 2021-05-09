@@ -13,7 +13,7 @@ class TransformStream extends Transform {
   
     let str = chunk.toString("utf8");
     if (chunk === "\u0003") {
-      process.exit();
+      process.exit(1);
     }
 
     chunk = cipherFunc(this.shift,this.action, str) + "\n";

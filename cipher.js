@@ -3,12 +3,12 @@ let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
 
 const cipherFunc = (number, action, string) => {
    if (number < 0) {
-     if (action === "encode") action = "decode";
+     if (action === "encode" || action === "en") action = "decode";
      else action = "encode";
      number *= -1;
    }
-   if (action === "decode") {
-    letters.reverse();
+   if (action === "decode" || action === "de") {
+     letters.reverse();
    }
 
    let cipherText = "";
