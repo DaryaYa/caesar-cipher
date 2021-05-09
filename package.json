@@ -1,0 +1,23 @@
+{
+  "name": "caesar-cipher",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "commander": "^7.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaryaYa/caesar-cipher.git"
+  },
+  "author": "me",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DaryaYa/caesar-cipher/issues"
+  },
+  "homepage": "https://github.com/DaryaYa/caesar-cipher#readme"
+}
